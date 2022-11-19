@@ -37,7 +37,7 @@ public class UserAccountController {
 	}
 
 	@DeleteMapping("/user/{login}")
-	@PreAuthorize("authentication.getName().equals(#login) or hasRole('ADMINISTRATOR')")
+	//@PreAuthorize("authentication.getName().equals(#login) or hasRole('ADMINISTRATOR')")
 	public UserAccountResponseDto removeUser(@PathVariable String login) {
 		return accountService.removeUser(login);
 	}
