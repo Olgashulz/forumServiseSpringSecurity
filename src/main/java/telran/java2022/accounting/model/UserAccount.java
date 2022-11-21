@@ -1,4 +1,4 @@
- package telran.java2022.accounting.model;
+package telran.java2022.accounting.model;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@EqualsAndHashCode(of = {"login"})
+@EqualsAndHashCode(of = { "login" })
 @Document(collection = "users")
 public class UserAccount {
 	@Id
@@ -27,10 +27,10 @@ public class UserAccount {
 	@Setter
 	LocalDate passwordExpDate;
 
+
 	public UserAccount() {
 		roles = new HashSet<>();
 		roles.add("USER");
-
 	}
 
 	public UserAccount(String login, String password, String firstName, String lastName) {
