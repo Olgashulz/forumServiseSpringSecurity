@@ -1,12 +1,9 @@
 package telran.java2022.security.service;
 
-import java.time.LocalDateTime;
-
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import telran.java2022.accounting.dao.UserAccountRepository;
-import telran.java2022.accounting.model.UserAccount;
 import telran.java2022.post.dao.PostRepository;
 import telran.java2022.post.model.Post;
 

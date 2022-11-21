@@ -17,6 +17,7 @@ import telran.java2022.post.dto.PostDto;
 import telran.java2022.post.dto.exceptions.PostNotFoundException;
 import telran.java2022.post.model.Comment;
 import telran.java2022.post.model.Post;
+import telran.java2022.post.service.login.PostLogger;
 
 @Service
 @RequiredArgsConstructor
@@ -42,6 +43,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
+	@PostLogger
 	public PostDto removePost(String id) {
 		log.info("Post with id {} handled", id);
 		Post post = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));
@@ -50,6 +52,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
+	@PostLogger
 	public PostDto updatePost(NewPostDto postUpdateDto, String id) {
 		log.info("Post with id {} handled", id);
 		Post post = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));
@@ -70,6 +73,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
+	@PostLogger
 	public void addLike(String id) {
 		log.info("Post with id {} handled", id);
 		Post post = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));
