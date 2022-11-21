@@ -1,6 +1,7 @@
 package telran.java2022.security.service;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.servlet.Filter;
@@ -20,11 +21,11 @@ import telran.java2022.accounting.model.UserAccount;
 
 @Component
 @RequiredArgsConstructor
-@Order(10)
+//@Order(10)
 public class ExpirationDateOfPasswordFilter implements Filter {
 
 	final UserAccountRepository repository;
-	private static final int EXPIRATION_DATE = 60;
+	//private static final int EXPIRATION_DATE = 60;
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
@@ -33,8 +34,7 @@ public class ExpirationDateOfPasswordFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) resp;
 		if (checkEndPoint(request.getMethod(), request.getServletPath())) {
 			UserAccount user = repository.findById(request.getUserPrincipal().getName()).orElse(null);
-			if (user.getPasswordCreation().plusDays(EXPIRATION_DATE).isBefore(LocalDateTime.now())) {
-				System.out.println(user.getPasswordCreation());
+			if (user.getPasswordExpDate().isBefore(LocalDate.now())) {
 				response.sendError(403, "Password duration expired.");
 				return;
 			}
